@@ -19,7 +19,7 @@ body {
 }
 
 header {
-    margin: 30px;
+    margin: 30px 0 15px 0;
     cursor: default;
 
     h1 {
@@ -46,8 +46,36 @@ header {
     }
 }
 
+.buttons {
+    button {
+        background-color: $primary;
+        color: $color;
+        font-size: 30px;
+        margin: 0 10px;
+        padding: 10px 20px;
+        border: 3px solid $accent;
+        cursor: pointer;
+        transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+        &:hover {
+            -webkit-box-shadow: 0px 0px 6px 2px $accent;
+            -moz-box-shadow: 0px 0px 6px 2px $accent;
+            box-shadow: 0px 0px 6px 2px $accent;
+            -webkit-transform: translate(0px, -2px);
+            -moz-transform: translate(0px, -2px);
+            -ms-transform: translate(0px, -2px);
+            -o-transform: translate(0px, -2px);
+            transform: translate(0px, -2px);
+        }
+    }
+
+    .clicked {
+        background-color: $secondary;
+    }
+}
+
 .movie {
-    margin: 15px;
+    margin: 15px 0 0 0;
     display: flex;
     width: 1000px;
 
