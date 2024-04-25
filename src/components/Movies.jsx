@@ -14,6 +14,8 @@ function Movies() {
                 setMovie(data);
                 setYear(data.release_date.slice(0, 4));
                 setDirector(data.credits.crew.filter(({ job }) => job === 'Director').map(({ name }) => name).join(', '));
+
+                console.log(data);
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
@@ -23,6 +25,13 @@ function Movies() {
     }, [])
 
     return (
+        // backdrop_path
+        // year
+        // runtime
+        // director
+        // tagline
+        // overview
+
         <>
             {movie ? (
                 <div className="movie">
