@@ -6,6 +6,8 @@ function Movies() {
     const [runtime, setRuntime] = useState(null);
     const [director, setDirector] = useState(null);
     const [writer, setWriter] = useState(null);
+    const [tagline, setTagline] = useState(null);
+    const [overview, setOverview] = useState(null);
 
     useEffect(() => {
         const fetchMovie = async () => {
@@ -21,7 +23,9 @@ function Movies() {
                 setYear(data.release_date.slice(0, 4));
                 setRuntime(`${hours > 0 ? hours + 'h' : ''} ${minutes > 0 ? minutes + 'min' : ''}`);
                 setDirector(data.credits.crew.filter(({ job }) => job === 'Director').map(({ name }) => name).join(', '));
-                setWriter(data.credits.crew.filter(({ job }) => job === 'Screenplay').map(({ name }) => name).join(', '));
+                setWriter(data.credits.crew.filter(({ job }) => job === 'Screenplay' || job === 'Writer').map(({ name }) => name).join(', '));
+                setTagline(data.tagline ? `"${data.tagline}"` : `"${data.title}"`);
+                setOverview(data.overview);
                 console.log(data);
             } catch (error) {
                 console.error('Error fetching data: ', error);
@@ -36,7 +40,7 @@ function Movies() {
         // year [done]
         // runtime [done]
         // director [done]
-        // writer
+        // writer [done]
         // tagline [done]
         // overview [done]
 
@@ -49,8 +53,8 @@ function Movies() {
                         <h1>{year} Version, {runtime}</h1>
                         <h2>Directed by {director}</h2>
                         <h2>Writed by {writer}</h2>
-                        <p>&quot;{movie.tagline}&quot;</p>
-                        <p>{movie.overview}</p>
+                        <p>{tagline}</p>
+                        <p>{overview}</p>
                     </div>
                 </div>
             ) : (
