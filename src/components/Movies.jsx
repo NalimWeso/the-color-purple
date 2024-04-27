@@ -51,8 +51,8 @@ function Movies() {
 
                     <div className="info">
                         <h1>{year} Version, {runtime}</h1>
-                        <h2>Directed by {director}</h2>
-                        <h2>Writed by {writer}</h2>
+                        <h2>Directed by <a href="#">{director}</a></h2>
+                        <h2>Writed by <a href="#">{writer}</a></h2>
                         <p>{tagline}</p>
                         <p>{overview}</p>
                     </div>
