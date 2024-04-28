@@ -13,7 +13,7 @@ function Movies() {
         const fetchMovie = async () => {
             try {
                 const response = await fetch('https://api.themoviedb.org/3/movie/873?api_key=7f0e9b5e25babb2fe0d751bf7e14f1f0&append_to_response=credits');
-                // id: 873, 558915
+                // id: 873, 558915 9686
                 const data = await response.json();
 
                 const hours = Math.floor(data.runtime / 60);
@@ -22,11 +22,10 @@ function Movies() {
                 setMovie(data);
                 setYear(data.release_date.slice(0, 4));
                 setRuntime(`${hours > 0 ? hours + 'h' : ''} ${minutes > 0 ? minutes + 'min' : ''}`);
-                setDirector(data.credits.crew.filter(({ job }) => job === 'Director').map(({ name }) => name).join(', '));
-                setWriter(data.credits.crew.filter(({ job }) => job === 'Screenplay' || job === 'Writer').map(({ name }) => name).join(', '));
+                setDirector(data.credits.crew.filter(({ job }) => job === 'Director').map(({ id, name }) => ({ id, name })));
+                setWriter(data.credits.crew.filter(({ job }) => job === 'Screenplay' || job === 'Writer').map(({ id, name }) => ({ id, name })));
                 setTagline(data.tagline ? `"${data.tagline}"` : `"${data.title}"`);
                 setOverview(data.overview);
-                console.log(data);
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
@@ -51,8 +50,25 @@ function Movies() {
 
                     <div className="info">
                         <h1>{year} Version, {runtime}</h1>
-                        <h2>Directed by <a href="#">{director}</a></h2>
-                        <h2>Writed by <a href="#">{writer}</a></h2>
+                        <h2>
+                            Directed by{' '}
+                            {director.map(({ id, name }, index) => (
+                                <span key={id}>
+                                    <a href={`https://www.themoviedb.org/person/${id}`} target="_blank">{name}</a>
+                                    {index !== director.length - 1 && ', '}
+                                </span>
+                            ))}
+                        </h2>
+
+                        <h2>
+                            Writed by{' '}
+                            {writer.map(({ id, name }, index) => (
+                                <span key={id}>
+                                    <a href={`https://www.themoviedb.org/person/${id}`} target="_blank">{name}</a>
+                                    {index !== writer.length - 1 && ', '}
+                                </span>
+                            ))}
+                        </h2>
                         <p>{tagline}</p>
                         <p>{overview}</p>
                     </div>
