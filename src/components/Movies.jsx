@@ -12,9 +12,9 @@ function Movies() {
     useEffect(() => {
         const fetchMovie = async () => {
             try {
-                const response = await fetch('https://api.themoviedb.org/3/movie/873?api_key=7f0e9b5e25babb2fe0d751bf7e14f1f0&append_to_response=credits');
-                // id: 873, 558915 9686
+                const response = await fetch('https://api.themoviedb.org/3/movie/9686?api_key=7f0e9b5e25babb2fe0d751bf7e14f1f0&append_to_response=credits');
                 const data = await response.json();
+                // id: 873, 558915 9686
 
                 const hours = Math.floor(data.runtime / 60);
                 const minutes = data.runtime % 60;
@@ -34,15 +34,18 @@ function Movies() {
         fetchMovie();
     }, [])
 
-    return (
-        // backdrop_path
-        // year [done]
-        // runtime [done]
-        // director [done]
-        // writer [done]
-        // tagline [done]
-        // overview [done]
+    const renderCredits = (credits) => (
+        <>
+            {credits.map(({ id, name }, index) => (
+                <span key={id}>
+                    <a href={`https://www.themoviedb.org/person/${id}`} target="_blank">{name}</a>
+                    {index !== credits.length - 1 && ', '}
+                </span>
+            ))}
+        </>
+    );
 
+    return (
         <>
             {movie ? (
                 <div className="movie">
@@ -50,25 +53,8 @@ function Movies() {
 
                     <div className="info">
                         <h1>{year} Version, {runtime}</h1>
-                        <h2>
-                            Directed by{' '}
-                            {director.map(({ id, name }, index) => (
-                                <span key={id}>
-                                    <a href={`https://www.themoviedb.org/person/${id}`} target="_blank">{name}</a>
-                                    {index !== director.length - 1 && ', '}
-                                </span>
-                            ))}
-                        </h2>
-
-                        <h2>
-                            Writed by{' '}
-                            {writer.map(({ id, name }, index) => (
-                                <span key={id}>
-                                    <a href={`https://www.themoviedb.org/person/${id}`} target="_blank">{name}</a>
-                                    {index !== writer.length - 1 && ', '}
-                                </span>
-                            ))}
-                        </h2>
+                        <h2>Directed by {renderCredits(director)}</h2>
+                        <h2>Writed by {renderCredits(writer)}</h2>
                         <p>{tagline}</p>
                         <p>{overview}</p>
                     </div>
