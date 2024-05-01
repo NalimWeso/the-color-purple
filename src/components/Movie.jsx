@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 function Movie() {
     const [movie, setMovie] = useState(null);
+    const [id, setId] = useState(null);
     const [year, setYear] = useState(null);
     const [runtime, setRuntime] = useState(null);
     const [director, setDirector] = useState(null);
@@ -20,6 +21,7 @@ function Movie() {
                 const minutes = data.runtime % 60;
 
                 setMovie(data);
+                setId(data.id);
                 setYear(data.release_date.slice(0, 4));
                 setRuntime(`${hours > 0 ? hours + 'h' : ''} ${minutes > 0 ? minutes + 'min' : ''}`);
                 setDirector(data.credits.crew.filter(({ job }) => job === 'Director').map(({ id, name }) => ({ id, name })));
@@ -52,11 +54,17 @@ function Movie() {
                     <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={`${movie.title} (${year})`} />
 
                     <div className="info">
-                        <h1>{year} Version, {runtime}</h1>
-                        <h2>Directed by {renderCredits(director)}</h2>
-                        <h2>Writed by {renderCredits(writer)}</h2>
-                        <p>{tagline}</p>
-                        <p>{overview}</p>
+                        <div className="data">
+                            <h1>{year} Version, {runtime}</h1>
+                            <h2>Directed by {renderCredits(director)}</h2>
+                            <h2>Writed by {renderCredits(writer)}</h2>
+                            <p>{tagline}</p>
+                            <p>{overview}</p>
+                        </div>
+
+                        <div className="link">
+                            <a href={`https://www.themoviedb.org/movie/${id}`} target="_blank">Explore on TMDB</a>
+                        </div>
                     </div>
                 </div>
             ) : (
