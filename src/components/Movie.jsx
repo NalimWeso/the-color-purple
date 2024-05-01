@@ -1,14 +1,17 @@
 import { useState, useEffect } from "react";
 
 function Movie() {
-    const [movie, setMovie] = useState(null);
-    const [id, setId] = useState(null);
-    const [year, setYear] = useState(null);
-    const [runtime, setRuntime] = useState(null);
-    const [director, setDirector] = useState(null);
-    const [writer, setWriter] = useState(null);
-    const [tagline, setTagline] = useState(null);
-    const [overview, setOverview] = useState(null);
+    const [movie, setMovie] = useState({
+        id: null,
+        title: null,
+        year: null,
+        runtime: null,
+        poster: null,
+        director: null,
+        writer: null,
+        tagline: null,
+        overview: null
+    });
 
     useEffect(() => {
         const fetchMovie = async () => {
@@ -20,14 +23,17 @@ function Movie() {
                 const hours = Math.floor(data.runtime / 60);
                 const minutes = data.runtime % 60;
 
-                setMovie(data);
-                setId(data.id);
-                setYear(data.release_date.slice(0, 4));
-                setRuntime(`${hours > 0 ? hours + 'h' : ''} ${minutes > 0 ? minutes + 'min' : ''}`);
-                setDirector(data.credits.crew.filter(({ job }) => job === 'Director').map(({ id, name }) => ({ id, name })));
-                setWriter(data.credits.crew.filter(({ job }) => job === 'Screenplay' || job === 'Writer').map(({ id, name }) => ({ id, name })));
-                setTagline(data.tagline ? `"${data.tagline}"` : `"${data.title}"`);
-                setOverview(data.overview);
+                setMovie({
+                    id: data.id,
+                    title: data.title,
+                    year: data.release_date.slice(0, 4),
+                    runtime: `${hours > 0 ? hours + 'h' : ''} ${minutes > 0 ? minutes + 'min' : ''}`,
+                    poster: data.poster_path,
+                    director: data.credits.crew.filter(({ job }) => job === 'Director').map(({ id, name }) => ({ id, name })),
+                    writer: data.credits.crew.filter(({ job }) => job === 'Screenplay' || job === 'Writer').map(({ id, name }) => ({ id, name })),
+                    tagline: data.tagline ? `"${data.tagline}"` : `"${data.title}"`,
+                    overview: data.overview
+                })
             } catch (error) {
                 console.error('Error fetching data: ', error);
             }
@@ -49,21 +55,21 @@ function Movie() {
 
     return (
         <>
-            {movie ? (
+            {movie.id ? (
                 <div className="movie">
-                    <img src={`https://image.tmdb.org/t/p/original/${movie.poster_path}`} alt={`${movie.title} (${year})`} />
+                    <img src={`https://image.tmdb.org/t/p/original/${movie.poster}`} alt={`${movie.title} (${movie.year})`} />
 
                     <div className="info">
                         <div className="data">
-                            <h1>{year} Version, {runtime}</h1>
-                            <h2>Directed by {renderCredits(director)}</h2>
-                            <h2>Writed by {renderCredits(writer)}</h2>
-                            <p>{tagline}</p>
-                            <p>{overview}</p>
+                            <h1>{movie.year} Version, {movie.runtime}</h1>
+                            <h2>Directed by {renderCredits(movie.director)}</h2>
+                            <h2>Writed by {renderCredits(movie.writer)}</h2>
+                            <p>{movie.tagline}</p>
+                            <p>{movie.overview}</p>
                         </div>
 
                         <div className="link">
-                            <a href={`https://www.themoviedb.org/movie/${id}`} target="_blank">Explore on TMDB</a>
+                            <a href={`https://www.themoviedb.org/movie/${movie.id}`} target="_blank">Explore on TMDB</a>
                         </div>
                     </div>
                 </div>
