@@ -1,14 +1,13 @@
 import Title from "./components/Title";
 import Buttons from "./components/Buttons";
-import Movies from "./components/Movies";
+import Movie from "./components/Movie";
 
 function App() {
-
     return (
         <>
             <Title />
             <Buttons />
-            <Movies />
+            <Movie />
         </>
     );
 }

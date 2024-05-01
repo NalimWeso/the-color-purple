@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function Movies() {
+function Movie() {
     const [movie, setMovie] = useState(null);
     const [year, setYear] = useState(null);
     const [runtime, setRuntime] = useState(null);
@@ -12,7 +12,7 @@ function Movies() {
     useEffect(() => {
         const fetchMovie = async () => {
             try {
-                const response = await fetch('https://api.themoviedb.org/3/movie/9686?api_key=7f0e9b5e25babb2fe0d751bf7e14f1f0&append_to_response=credits');
+                const response = await fetch('https://api.themoviedb.org/3/movie/873?api_key=7f0e9b5e25babb2fe0d751bf7e14f1f0&append_to_response=credits');
                 const data = await response.json();
                 // id: 873, 558915 9686
 
@@ -68,4 +68,4 @@ function Movies() {
     );
 }
 
-export default Movies
+export default Movie
