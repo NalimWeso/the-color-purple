@@ -1,11 +1,11 @@
-import Title from "./components/Title";
+import Header from "./components/Header";
 import Buttons from "./components/Buttons";
 import Movie from "./components/Movie";
 
 function App() {
     return (
         <>
-            <Title />
+            <Header />
             <Buttons />
             <Movie />
         </>

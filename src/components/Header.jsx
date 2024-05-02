@@ -1,4 +1,4 @@
-function Title() {
+function Header() {
     return (
         <header>
             <h2><a href="https://github.com/NalimWeso/" target="_blank" title="GitHub Account">NalimWeso</a> Presents</h2>
@@ -8,4 +8,4 @@ function Title() {
     );
 }
 
-export default Title
+export default Header
