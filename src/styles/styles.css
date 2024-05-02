@@ -1,0 +1,20 @@
+body{
+    background-color: orange;
+    color: blue;
+}
+
+body::-moz-placeholder{
+    color: steelblue;
+}
+
+body::placeholder{
+    color: steelblue;
+}
+
+h1::-moz-placeholder{
+    border: 1px solid red;
+}
+
+h1::placeholder{
+    border: 1px solid red;
+}
