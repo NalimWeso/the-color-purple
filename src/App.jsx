@@ -11,7 +11,6 @@ function App() {
             <Header />
             <Buttons setMovieId={setMovieId} />
             <Movie id={movieId} />
-            {/* id: 873, 558915, 9686 */}
         </>
     );
 }
