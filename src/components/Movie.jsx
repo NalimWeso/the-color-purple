@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types';
 
-function Movie() {
+function Movie(prop) {
     const [movie, setMovie] = useState({
         id: null,
         title: null,
@@ -16,9 +17,8 @@ function Movie() {
     useEffect(() => {
         const fetchMovie = async () => {
             try {
-                const response = await fetch('https://api.themoviedb.org/3/movie/873?api_key=7f0e9b5e25babb2fe0d751bf7e14f1f0&append_to_response=credits');
+                const response = await fetch(`https://api.themoviedb.org/3/movie/${prop.id}?api_key=7f0e9b5e25babb2fe0d751bf7e14f1f0&append_to_response=credits`);
                 const data = await response.json();
-                // id: 873, 558915, 9686
 
                 const hours = Math.floor(data.runtime / 60);
                 const minutes = data.runtime % 60;
@@ -40,7 +40,7 @@ function Movie() {
         }
 
         fetchMovie();
-    }, [])
+    }, [prop.id])
 
     const renderCredits = (credits) => (
         <>
@@ -82,6 +82,10 @@ function Movie() {
             )}
         </>
     );
+}
+
+Movie.propTypes = {
+    id: PropTypes.number.isRequired
 }
 
 export default Movie

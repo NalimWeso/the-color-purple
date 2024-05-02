@@ -7,7 +7,8 @@ function App() {
         <>
             <Header />
             <Buttons />
-            <Movie />
+            <Movie id={873} />
+            {/* id: 873, 558915, 9686 */}
         </>
     );
 }
