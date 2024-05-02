@@ -18,7 +18,7 @@ function Movie() {
             try {
                 const response = await fetch('https://api.themoviedb.org/3/movie/873?api_key=7f0e9b5e25babb2fe0d751bf7e14f1f0&append_to_response=credits');
                 const data = await response.json();
-                // id: 873, 558915 9686
+                // id: 873, 558915, 9686
 
                 const hours = Math.floor(data.runtime / 60);
                 const minutes = data.runtime % 60;
@@ -45,10 +45,10 @@ function Movie() {
     const renderCredits = (credits) => (
         <>
             {credits.map(({ id, name }, index) => (
-                <span key={id}>
-                    <a href={`https://www.themoviedb.org/person/${id}`} target="_blank">{name}</a>
+                <>
+                    <a key={id} href={`https://www.themoviedb.org/person/${id}`} target="_blank">{name}</a>
                     {index !== credits.length - 1 && ', '}
-                </span>
+                </>
             ))}
         </>
     );
