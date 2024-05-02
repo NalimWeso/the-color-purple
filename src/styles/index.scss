@@ -55,7 +55,11 @@ header {
         padding: 10px 20px;
         border: 3px solid $accent;
         cursor: pointer;
-        transition: color, .3s ease-in-out, .3s ease-in-out, transform .3s ease-in-out;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        transition: color .3s ease-in-out, box-shadow .3s ease-in-out, transform .3s ease-in-out;
 
         &:hover {
             color: $hover;
