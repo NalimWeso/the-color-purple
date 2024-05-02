@@ -1,10 +1,16 @@
-function Button() {
+import PropTypes from 'prop-types';
+
+function Buttons({ setMovieId }) {
     return (
         <div className="buttons">
-            <button className="clicked">1985</button>
-            <button>2023</button>
+            <button onClick={() => setMovieId(873)} className="clicked">1985</button>
+            <button onClick={() => setMovieId(558915)}>2023</button>
         </div>
     );
 }
 
-export default Button
+Buttons.propTypes = {
+    setMovieId: PropTypes.number.isRequired
+}
+
+export default Buttons
