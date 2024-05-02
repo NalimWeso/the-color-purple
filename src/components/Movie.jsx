@@ -57,7 +57,9 @@ function Movie() {
         <>
             {movie.id ? (
                 <div className="movie">
-                    <img src={`https://image.tmdb.org/t/p/original/${movie.poster}`} alt={`${movie.title} (${movie.year})`} />
+                    <div className="poster">
+                        <img src={`https://image.tmdb.org/t/p/original/${movie.poster}`} alt={`${movie.title} (${movie.year})`} />
+                    </div>
 
                     <div className="info">
                         <div className="data">

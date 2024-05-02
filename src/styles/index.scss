@@ -81,9 +81,11 @@ header {
     gap: 5px;
     width: 1000px;
 
-    img {
-        width: 400px;
-        border: 3px solid $accent;
+    .poster {
+        img {
+            width: 400px;
+            border: 3px solid $accent;
+        }
     }
 
     .loading {
