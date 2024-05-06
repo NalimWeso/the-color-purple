@@ -1,6 +1,7 @@
 @import '_variables.postcss';
 @custom-media --900 (width <= 900px);
 @custom-media --700 (width <= 700px);
+@custom-media --500 (width <= 500px);
 @custom-media --610 (width <=610px);
 @custom-media --400 (width <=400px);
 
@@ -24,8 +25,9 @@ body {
 
 header {
     margin: 15px 0;
+    white-space: nowrap;
     cursor: default;
-
+    
     h1 {
         font-size: 70px;
         text-shadow: 2px 2px 8px $accent;
