@@ -1,6 +1,6 @@
 # 💜 The Color Purple
 
-Comparison of both films **The Color Purple** - Spielberg's classic version and the modern adaptation directed by Bazawule.
+Comparison of both films **The Color Purple** - Steven Spielberg's classic version and the modern adaptation directed by Blitz Bazawule.
 
 ## 🎬 Functionality
 
