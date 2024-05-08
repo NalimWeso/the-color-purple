@@ -1,11 +1,11 @@
-# The Color Purple
+# 💜 The Color Purple
 
-Comparison of both films The Color Purple - Spielberg's classic version and the modern version directed by Bazawule.
+Comparison of both films **The Color Purple** - Spielberg's classic version and the modern adaptation directed by Bazawule.
 
-## Functionality
+## 🎬 Functionality
 
-The program retrieves data via a REST API from the TMDB website. Upon selecting the appropriate date, it immediately displays specific information about the chosen film.
+The program retrieves data via a **Fetch API** from the TMDB website. Upon selecting the appropriate date, it immediately displays specific information about the chosen film.
 
-## Conclusion
+## 🌟 Conclusion
 
-Thanks to The Color Purple program, you will be able to easily access the most important information about these two purple productions!
+Thanks to **The Color Purple** program, you will be able to easily access the most important information about these two *purple* productions!
