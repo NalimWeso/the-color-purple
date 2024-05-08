@@ -4,7 +4,7 @@ Comparison of both cinematic adaptations of **Alice Walker's The Color Purple** 
 
 ## 🎬 Functionality
 
-The program retrieves data via a **Fetch API** from the TMDB website. Upon selecting the appropriate date, it immediately displays specific information about the chosen film.
+The program retrieves data via a **Fetch API** from the TMDB website. Upon selecting the appropriate date, it immediately displays specific information about the chosen motion picture.
 
 ## 🌟 Conclusion
 
